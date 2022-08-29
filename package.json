@@ -1,17 +1,28 @@
 {
   "name": "aplicacion_clima_node",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "David Izquierdo",
   "license": "ISC",
   "dependencies": {
-    "color": "^4.2.3",
+    "axios": "^0.27.2",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
     "inquirer": "^9.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dizqpon/node-aplicacion-tiempo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dizqpon/node-aplicacion-tiempo/issues"
+  },
+  "homepage": "https://github.com/Dizqpon/node-aplicacion-tiempo#readme",
+  "description": ""
 }

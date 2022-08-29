@@ -1,5 +1,5 @@
-const inquirer = require('inquirer');
-require('colors');
+import inquirer from "inquirer";
+import colors from "colors";
 
 const preguntas = [
     {
@@ -8,33 +8,17 @@ const preguntas = [
         message: '¿Qué desea hacer?',
         choices: [
             {
-                value: '1',
-                name: `${'1.'.bgMagenta} Crear una tarea`
+                value: 1,
+                name: `${'1.'.bgMagenta} Buscar ciudad`
             },
             {
-                value: '2',
-                name: `${'2.'.bgMagenta} Listar tareas`
+                value: 2,
+                name: `${'2.'.bgMagenta} Historial`
             },
             {
-                value: '3',
-                name: `${'3.'.bgMagenta} Listar tareas completadas`
+                value: 0,
+                name: `${'3.'.bgMagenta} Salir`
             },
-            {
-                value: '4',
-                name: `${'4.'.bgMagenta} Listar tareas pendientes`
-            },
-            {
-                value: '5',
-                name: `${'5.'.bgMagenta} Completar tarea`
-            },
-            {
-                value: '6',
-                name: `${'6.'.bgMagenta} Borrar tarea`
-            },
-            {
-                value: '0',
-                name: `${'0.'.bgMagenta} Salir`
-            }
         ],
     }
 ]
@@ -54,6 +38,33 @@ const pausa = async() => {
         await inquirer.prompt(question);
         
     };
+const listadoLugares = async ( lugares = [] ) => {
+    const choices = lugares.map(( lugar, i ) => {
+        const idx = `${i + 1 }.`.green;
+
+        return {
+            value: lugar.place_id,
+            name: `${idx} ${lugar.nombre}`
+        }
+    });
+
+    choices.unshift({
+        value: '0',
+        name: '0. '.green + ' Cancelar'
+    });
+
+    const preguntas = [
+        {
+            type: 'list',
+            name: 'id',
+            message: 'Seleccione lugar: ',
+            choices
+        }
+    ]
+
+    const {id}  = await inquirer.prompt(preguntas);
+    return id;
+}
 
 const inquirerMenu = async() => {
     console.clear();
@@ -65,7 +76,7 @@ const inquirerMenu = async() => {
    return opcion;
 }
 
-const leerInput = async (mensaje) => {
+ const leerInput = async (mensaje) => {
     const question = [
         {
             type: 'input',
@@ -86,8 +97,9 @@ const leerInput = async (mensaje) => {
 }
 
 
-module.exports = {
-    inquirerMenu,
-    pausa,
-    leerInput
-}
+export {
+     inquirerMenu,
+     pausa,
+     leerInput,
+     listadoLugares
+ }
